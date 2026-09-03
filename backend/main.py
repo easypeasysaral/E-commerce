@@ -1,9 +1,11 @@
-from fastapi import FastAPI
-
-app = FastAPI(title= "E-commerce API")
+from fastapi import FastAPI, APIRouter
+from routes import Products
+app = FastAPI(title= "This is the E-Commerce API")
 
 @app.get("/")
-async def root():
+async def Root():
     return {
-        'message' : "Backend is running"
+        'message' : "API is Working"
     }
+
+app.include_router(Products.router)
