@@ -3,7 +3,7 @@ from routes import Products
 app = FastAPI(title= "This is the E-Commerce API")
 
 @app.get("/")
-async def Root():
+async def root():
     return {
         'message' : "API is Working"
     }
