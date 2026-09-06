@@ -34,3 +34,32 @@ async def add_product(product : Product):
         'message' : "Data uploaded successfully",
         'data' : product
     }
+
+
+@router.delete('/{product_id}')
+async def delete_product(product_id : int):
+    for product in fake_db:
+        if product.product_id == product_id:
+            fake_db.remove(product)
+            return{
+                'message' : f"Product with {product_id} deleted successfullly",
+            }
+    
+    raise HTTPException(status_code=404, detail=f"Product with {product_id} not found")
+
+
+    
+@router.put('/{product_id}')
+async def update_product(product_id : int,product : Product):
+    for pro in fake_db:
+        if pro.product_id == product_id:
+            pro.product_type = product.product_type
+            pro.product_name = product.product_name
+            pro.product_price = product.product_price
+            pro.product_availability = product.product_availability
+            
+            break
+    
+    raise HTTPException(status_code=404, detail=f"Product with {product_id} not found")
+
+    
