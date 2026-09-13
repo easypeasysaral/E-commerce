@@ -6,7 +6,7 @@ router = APIRouter(prefix="/Products", tags=['Products API'])
 fake_db = []
 
 class Product(BaseModel):
-    product_id : int = Field(...,description="This is the id of the product")
+    
     product_type : str = Field(...,description="This is the type of product")
     product_price : int = Field(...,description="This is the product price")
     product_name : str = Field(...,description="This is the name of the product")
@@ -58,7 +58,8 @@ async def update_product(product_id : int,product : Product):
             pro.product_price = product.product_price
             pro.product_availability = product.product_availability
             
-            break
+            pro.product_availability = product.product_availability
+            return {"message": "Product updated successfully", "data": pro} 
     
     raise HTTPException(status_code=404, detail=f"Product with {product_id} not found")
 
