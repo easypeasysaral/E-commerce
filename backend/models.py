@@ -10,3 +10,11 @@ class DBproduct(Base):
     product_price = Column(Integer, index = True)
     product_availability = Column(Boolean, index = True)
 
+class DBuser(Base):
+    __tablename__ = 'User'
+    
+    id = Column(Integer, primary_key=True, index= True)
+    username = Column(String, unique=True, index = True)
+    email = Column(String,unique=True, index=True)
+    password = Column(String,index= True)
+    
